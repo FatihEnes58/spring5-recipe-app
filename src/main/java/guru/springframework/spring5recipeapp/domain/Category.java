@@ -1,5 +1,6 @@
 package guru.springframework.spring5recipeapp.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
