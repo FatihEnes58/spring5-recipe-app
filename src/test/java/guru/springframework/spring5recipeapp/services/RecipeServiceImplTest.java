@@ -2,6 +2,8 @@ package guru.springframework.spring5recipeapp.services;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import guru.springframework.spring5recipeapp.converts.RecipeCommandToRecipe;
+import guru.springframework.spring5recipeapp.converts.RecipeToRecipeCommand;
 import guru.springframework.spring5recipeapp.domain.Recipe;
 import guru.springframework.spring5recipeapp.repositories.RecipeRepository;
 import java.util.HashSet;
@@ -19,12 +21,19 @@ class RecipeServiceImplTest {
   @Mock
   RecipeRepository recipeRepository;
 
+  @Mock
+  RecipeCommandToRecipe recipeCommandToRecipe;
+
+  @Mock
+  RecipeToRecipeCommand recipeToRecipeCommand;
+
   @BeforeEach
   void setUp() {
 
     MockitoAnnotations.openMocks(this);
 
-    recipeService = new RecipeServiceImpl(recipeRepository);
+    recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe,
+        recipeToRecipeCommand);
 
   }
 
