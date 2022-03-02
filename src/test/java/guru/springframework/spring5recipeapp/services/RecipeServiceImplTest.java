@@ -1,6 +1,9 @@
 package guru.springframework.spring5recipeapp.services;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import guru.springframework.spring5recipeapp.converts.RecipeCommandToRecipe;
 import guru.springframework.spring5recipeapp.converts.RecipeToRecipeCommand;
@@ -48,7 +51,15 @@ class RecipeServiceImplTest {
 
     Set<Recipe> recipes = recipeService.getRecipes();
     assertEquals(1, recipes.size());
-    Mockito.verify(recipeRepository, Mockito.times(1)).findAll();
+    verify(recipeRepository, times(1)).findAll();
 
+  }
+
+  @Test
+  void deleteByIdTest() {
+    Long idToDelete = 2L;
+    recipeService.deleteById(idToDelete);
+
+    verify(recipeRepository, times(1)).deleteById(anyLong());
   }
 }
